@@ -1,0 +1,14 @@
+env:
+  files: ['.env']
+  default:
+    MYSQL_ROOT_PASSWORD: root
+    MYSQL_PASSWORD: conf<project.id>
+
+
+containers:
+  apache:
+    document_root: /var/www/html/web
+    php_ini_files: apache/php
+
+
+

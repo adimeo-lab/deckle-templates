@@ -1,0 +1,7 @@
+
+# Local config files
+prod/.env
+containers/apache/settings/settings.local.php
+
+# Lock files
+/mutagen.yml.lock

@@ -1,0 +1,5 @@
+
+# Local config files
+.env
+# Lock files
+/mutagen.yml.lock
