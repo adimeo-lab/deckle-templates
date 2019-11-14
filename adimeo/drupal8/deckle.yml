@@ -4,15 +4,15 @@ project:
   type: drupal8 # project type to tell deckle what to do when initializing/resetting project
 
 vm:
-  host: deckle-vm
+  host: deckle.dev
   user: deckle
 
 docker:
-  host: deckle-vm:4243 # overrides DOCKER_HOST
+  host: deckle.dev:4243 # overrides DOCKER_HOST
   path: ~/projects/conf<project.name> # path of the Docker configuration on VM
 
 app:
-  container: bibgir # main app container, where the remote commands are executed
+  container: conf<project.name> # main app container, where the remote commands are executed
   path: /var/www/html # path of the project in container ; used as default cwd for remote commands
   port: 8084 # container accessible port for HTTP
 
