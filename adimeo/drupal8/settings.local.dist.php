@@ -90,6 +90,8 @@ $settings['cache']['bins']['render'] = 'cache.backend.null';
  * in the early stages of development, you may want to disable it.
  */
 $settings['cache']['bins']['dynamic_page_cache'] = 'cache.backend.null';
+
+
 $settings['cache']['bins']['page'] = 'cache.backend.null';
 
 
@@ -112,16 +114,27 @@ $settings['cache']['bins']['page'] = 'cache.backend.null';
  * using these parameters in a request to rebuild.php.
  */
 $settings['rebuild_access'] = false;
+
+/**
+ * Skip file system permissions hardening.
+ *
+ * The system module will periodically check the permissions of your site's
+ * site directory to ensure that it is not writable by the website user. For
+ * sites that are managed with a version control system, this can cause problems
+ * when files in that directory such as settings.php are updated, because the
+ * user pulling in the changes won't have permissions to modify files in the
+ * directory.
+ */
 $settings['skip_permissions_hardening'] = true;
 
 $settings['trusted_host_patterns'] = ['.*'];
 
 $databases['default']['default'] = [
-  'database' => '<<env(MYSQL_DATABASE)>>',
-  'username' => '<<env(MYSQL_USERNAME)>>',
-  'password' => '<<env(MYSQL_PASSWORD)>>',
-  'host' => 'mysql',
-  'port' => '<<env(MYSQL_PORT)>>',
+  'database' => 'conf<db.database>',
+  'username' => 'conf<db.username>',
+  'password' => 'conf<db.password>',
+  'host' => 'conf<db.container>',
+  'port' => '3306',
   'driver' => 'mysql',
   'prefix' => '',
   'collation' => 'utf8mb4_general_ci',

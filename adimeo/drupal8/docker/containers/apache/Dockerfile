@@ -2,9 +2,6 @@ FROM ubuntu:18.04
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Set locales
-RUN locale-gen en_US.UTF-8 fr_FR.UTF-8
-
 RUN apt-get update && apt-get install -yq --no-install-recommends \
     apt-utils \
     curl \
@@ -44,9 +41,8 @@ RUN apt-get update && apt-get install -yq --no-install-recommends \
     ca-certificates \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Install composer
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-RUN composer global require hirak/prestissimo --prefer-dist --no-progress --no-suggest --classmap-authoritative
+# Set locales
+RUN locale-gen en_US.UTF-8 fr_FR.UTF-8
 
 # Configure apache
 RUN a2enmod rewrite expires
@@ -63,8 +59,11 @@ COPY config/php/*.ini /etc/php/7.2/apache2/conf.d/
 
 EXPOSE 80 443
 
+# Install composer
+RUN curl -sS https://getcomposer.org/installer | php && mv composer.phar /usr/local/bin/composer && composer global require hirak/prestissimo --no-plugins --no-scripts
+
 WORKDIR /var/www/html
-COPY ../../../../../../composer.json .
-RUN composer install
+
 RUN rm index.html
+
 CMD apachectl -D FOREGROUND
