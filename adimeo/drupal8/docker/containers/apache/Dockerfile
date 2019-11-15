@@ -50,9 +50,9 @@ RUN echo "ServerName localhost" | tee /etc/apache2/conf-available/servername.con
 RUN a2enconf servername
 
 # Configure vhost
-COPY config/httpd/vhost.conf /etc/apache2/sites-available/
+COPY config/httpd/vhost.conf /etc/apache2/sites-available/conf<project.name>.conf
 RUN a2dissite 000-default
-RUN a2ensite vhost.conf
+RUN a2ensite conf<project.name>.conf
 
 # Configure PHP
 COPY config/php/*.ini /etc/php/7.2/apache2/conf.d/
