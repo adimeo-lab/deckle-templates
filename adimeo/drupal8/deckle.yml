@@ -4,11 +4,11 @@ project:
   type: drupal8 # project type to tell deckle what to do when initializing/resetting project
 
 vm:
-  host: deckle.dev
+  host: deckle-vm
   user: deckle
 
 docker:
-  host: deckle.dev:4243 # overrides DOCKER_HOST
+  host: deckle-vm:4243 # overrides DOCKER_HOST
   path: ~/projects/conf<project.name> # path of the Docker configuration on VM
 
 app:
