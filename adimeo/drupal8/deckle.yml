@@ -14,13 +14,14 @@ docker:
 app:
   container: conf<project.name> # main app container, where the remote commands are executed
   path: /var/www/html # path of the project in container ; used as default cwd for remote commands
-  port: 8084 # container accessible port for HTTP
+  port: conf<app.port> # container accessible port for HTTP
 
 db: # dev db setup (these data will be used to generate application conf
   container: mysql57
   database: conf<project.name>
   username: root
   password: root
+  port: 3306
 
 reference: # integration server info ; user executing deckle must have access to this server
   host: dev.adimeo.eu
