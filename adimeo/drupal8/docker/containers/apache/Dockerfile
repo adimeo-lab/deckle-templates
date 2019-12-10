@@ -49,13 +49,9 @@ RUN a2enmod rewrite expires
 RUN echo "ServerName localhost" | tee /etc/apache2/conf-available/servername.conf
 RUN a2enconf servername
 
-# Configure vhost
-COPY config/httpd/vhost.conf /etc/apache2/sites-available/conf<project.name>.conf
-RUN a2dissite 000-default
-RUN a2ensite conf<project.name>.conf
+# Add xhprof_support
+COPY config/php/extensions/tideways_xhprof-7.2.so /usr/lib/php/20170718
 
-# Configure PHP
-COPY config/php/*.ini /etc/php/7.2/apache2/conf.d/
 
 EXPOSE 80 443
 
@@ -65,5 +61,16 @@ RUN curl -sS https://getcomposer.org/installer | php && mv composer.phar /usr/lo
 WORKDIR /var/www/html
 
 RUN rm index.html
+
+# Configure vhost
+COPY config/httpd/vhost.conf /etc/apache2/sites-available/conf<project.name>.conf
+RUN a2dissite 000-default
+RUN a2ensite conf<project.name>.conf
+
+# Configure PHP
+COPY config/php/conf.d/*.ini /etc/php/7.2/apache2/conf.d/
+
+# Configure XHPROF
+COPY config/php/xhprof /var/www/xhprof
 
 CMD apachectl -D FOREGROUND
