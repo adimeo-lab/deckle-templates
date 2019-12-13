@@ -26,7 +26,7 @@ return array(
     // The timeout option is in seconds and defaults to 3 if unspecified.
     //
     'save.handler' => 'upload',
-    'save.handler.upload.uri' => 'https://xhgui/run/import',
+    'save.handler.upload.uri' => 'http://xhgui/run/import',
     'save.handler.upload.timeout' => 10,
 
     // For MongoDB
