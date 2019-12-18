@@ -9,6 +9,7 @@ docker:
 
 app:
   container: conf<project.name> # main app container, where the remote commands are executed
+  service: apache
   path: /var/www/html # path of the project in container ; used as default cwd for remote commands
 
 db: # dev db setup (these data will be used to generate application conf
