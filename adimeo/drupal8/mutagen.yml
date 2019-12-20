@@ -3,10 +3,7 @@ sync:
     mode: "one-way-safe"
     symlink:
       mode: "posix-raw"
-    ignore:
-      vcs: true
-      paths:
-        - "deckle"
+
 
   conf<project.name>src:
     alpha: ".."
@@ -17,6 +14,13 @@ sync:
         defaultGroup: "www-data"
         defaultFileMode: 644
         defaultDirectoryMode: 755
+    ignore:
+      paths:
+        - "deckle"
+        - "vendor"
+        - "web/core"
+        - "web/modules/contrib"
+        - "web/libraries"
 
   conf<project.name>vendor:
     alpha: "docker://conf<project.name>/var/www/html/vendor"
