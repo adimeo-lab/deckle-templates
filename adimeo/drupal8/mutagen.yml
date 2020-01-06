@@ -1,11 +1,11 @@
 sync:
   defaults:
-    mode: "one-way-safe"
     symlink:
       mode: "posix-raw"
 
 
   conf<project.name>src:
+    mode: "two-way-resolved"
     alpha: ".."
     beta: "docker://conf<project.name>/var/www/html"
     configurationBeta:
@@ -23,18 +23,22 @@ sync:
         - "web/libraries"
 
   conf<project.name>vendor:
+    mode: "one-way-replica"
     alpha: "docker://conf<project.name>/var/www/html/vendor"
     beta: "../vendor"
 
   conf<project.name>core:
+    mode: "one-way-replica"
     alpha: "docker://conf<project.name>/var/www/html/web/core"
     beta: "../web/core"
 
   conf<project.name>contrib:
+    mode: "one-way-replica"
     alpha: "docker://conf<project.name>/var/www/html/web/modules/contrib"
     beta: "../web/modules/contrib"
 
   conf<project.name>libraries:
+    mode: "one-way-replica"
     alpha: "docker://conf<project.name>/var/www/html/web/libraries"
     beta: "../web/libraries"
 
