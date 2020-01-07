@@ -14,7 +14,7 @@ RUN apt-get update && apt-get install -yq --no-install-recommends \
     # Install apache
     apache2 \
     # Install php
-    php-7.3 \
+    php7.3 \
     php7.3-cli \
     php7.3-json \
     php7.3-curl \
