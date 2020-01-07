@@ -2,7 +2,7 @@ FROM ubuntu:18.04
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-RUN apt-get install -yq  --no-install-recommends software-properties-common \
+RUN apt-get update && apt-get install -yq  --no-install-recommends software-properties-common \
     add-apt-repository ppa:ondrej/php \
     apt-get update
     
