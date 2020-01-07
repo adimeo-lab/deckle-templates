@@ -2,6 +2,10 @@ FROM ubuntu:18.04
 
 ENV DEBIAN_FRONTEND=noninteractive
 
+RUN apt-get install -yq  --no-install-recommends software-properties-common \
+    add-apt-repository ppa:ondrej/php \
+    apt-get update
+    
 RUN apt-get update && apt-get install -yq --no-install-recommends \
     apt-utils \
     curl \
@@ -10,22 +14,22 @@ RUN apt-get update && apt-get install -yq --no-install-recommends \
     # Install apache
     apache2 \
     # Install php
-    libapache2-mod-php \
-    php-cli \
-    php-json \
-    php-curl \
-    php-fpm \
-    php-gd \
-    php-ldap \
-    php-mbstring \
-    php-mysql \
-    php-soap \
-    php-sqlite3 \
-    php-xml \
-    php-zip \
-    php-intl \
-    php-imagick \
-    php-xdebug \
+    php-7.3 \
+    php7.3-cli \
+    php7.3-json \
+    php7.3-curl \
+    php7.3-fpm \
+    php7.3-gd \
+    php7.3-ldap \
+    php7.3-mbstring \
+    php7.3-mysql \
+    php7.3-soap \
+    php7.3-sqlite3 \
+    php7.3-xml \
+    php7.3-zip \
+    php7.3-intl \
+    php7.3-imagick \
+    php7.3-xdebug \
     # Install tools
     patch \
     unzip \
@@ -50,7 +54,7 @@ RUN echo "ServerName localhost" | tee /etc/apache2/conf-available/servername.con
 RUN a2enconf servername
 
 # Add xhprof_support
-COPY config/php/extensions/tideways_xhprof-7.2.so /usr/lib/php/20170718
+COPY config/php/extensions/tideways_xhprof-7.3.so /usr/lib/php/20170718
 
 
 EXPOSE 80 443
@@ -68,7 +72,7 @@ RUN a2dissite 000-default
 RUN a2ensite conf<project.name>.conf
 
 # Configure PHP
-COPY config/php/conf.d/*.ini /etc/php/7.2/apache2/conf.d/
+COPY config/php/conf.d/*.ini /etc/php/7.3/apache2/conf.d/
 
 # Configure XHPROF
 COPY config/php/xhprof /var/www/xhprof
