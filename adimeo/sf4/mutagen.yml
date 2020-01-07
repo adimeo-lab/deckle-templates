@@ -1,0 +1,29 @@
+sync:
+  defaults:
+    symlink:
+      mode: "posix-raw"
+
+  conf<project.name>src:
+    mode: "two-way-resolved"
+    alpha: ".."
+    beta: "docker://conf<project.name>/var/www/html"
+    configurationBeta:
+      permissions:
+        defaultOwner: "www-data"
+        defaultGroup: "www-data"
+        defaultFileMode: 644
+        defaultDirectoryMode: 755
+    ignore:
+      paths:
+        - "deckle"
+        - "vendor"
+        - "var"
+
+  conf<project.name>vendor:
+    mode: "one-way-replica"
+    alpha: "docker://conf<project.name>/var/www/html/vendor"
+    beta: "../vendor"
+
+
+
+
