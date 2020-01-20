@@ -5,7 +5,7 @@ services:
     restart: unless-stopped
     build: './containers/mysql/'
     volumes:
-      - mysql57:/var/lib/mysql:delegated
+      - conf<project.name>_mysql57:/var/lib/mysql:delegated
     ports:
       - "${MYSQL_PORT}:3306"
     environment:
