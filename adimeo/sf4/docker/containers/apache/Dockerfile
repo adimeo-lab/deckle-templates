@@ -18,7 +18,6 @@ RUN apt-get update && apt-get install -yq --no-install-recommends \
     php7.3-cli \
     php7.3-json \
     php7.3-curl \
-    php7.3-fpm \
     php7.3-gd \
     php7.3-ldap \
     php7.3-mbstring \
