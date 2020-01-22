@@ -1,7 +1,0 @@
-project:
-  name: conf<project.name> # name used for COMPOSE_PROJECT_NAME, thus for the Docker stack
-  type: mysql57 # project type to tell deckle what to do when initializing/resetting project
-
-docker:
-  #host: deckle-vm:4243 # overrides DOCKER_HOST
-  path: ~/projects/conf<project.name>_mysql57 # path of the Docker configuration on VM
