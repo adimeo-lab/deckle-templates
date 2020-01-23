@@ -29,6 +29,7 @@ RUN apt-get update && apt-get install -yq --no-install-recommends \
     php7.3-intl \
     php7.3-imagick \
     php7.3-xdebug \
+    php-amqp \
     # Install tools
     patch \
     unzip \
@@ -53,7 +54,7 @@ RUN echo "ServerName localhost" | tee /etc/apache2/conf-available/servername.con
 RUN a2enconf servername
 
 # Add xhprof_support
-COPY config/php/extensions/tideways_xhprof-7.3.so /usr/lib/php/20170718
+COPY config/php/extensions/tideways_xhprof-7.3.so /usr/lib/php/20180731
 
 
 EXPOSE 80 443
@@ -66,9 +67,9 @@ WORKDIR /var/www/html
 RUN rm index.html
 
 # Configure vhost
-COPY config/httpd/vhost.conf /etc/apache2/sites-available/conf<project.name>.conf
+COPY config/httpd/vhost.conf /etc/apache2/sites-available/FLLbackend.conf
 RUN a2dissite 000-default
-RUN a2ensite conf<project.name>.conf
+RUN a2ensite FLLbackend.conf
 
 # Configure PHP
 COPY config/php/conf.d/*.ini /etc/php/7.3/apache2/conf.d/
